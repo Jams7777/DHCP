@@ -1,0 +1,6 @@
+# Path to dhcpd's config file (default: /etc/dhcp/dhcpd.conf). 
+DHCPDv4_CONF=/etc/dhcp/dhcpd.conf 
+# Path to dhcpd's PID file (default: /var/run/dhcpd.pid). 
+DHCPDv4_PID=/var/run/dhcpd.pid 
+INTERFACESv4="enp0s8" 
+INTERFACESv6=""
