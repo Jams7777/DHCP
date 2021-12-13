@@ -11,3 +11,23 @@ COPY db.leters /var/cache/bind/db.leters
 COPY db.numbers /var/cache/bind/db.numbers
 EXPOSE 53/udp 53/tcp 
 CMD [service bind9 restart,"-g","daemon off;"]
+
+
+
+
+
+
+FROM debian:latest 
+ENV TERM xterm 
+LABEL maintainer=administador@sri.local 
+RUN apt-get -o Acquire::Check-Valid-Until=false update 
+RUN apt-get install -y vsftpd db-util nano iproute2 iputils-ping 
+RUN apt-get install -q -y rsyslog 
+COPY ./ftp/vsftpd.conf /etc/vsftpd.conf 
+COPY ./ftp/the.key /etc/ssl/private/the.key 
+COPY ./ftp/the.pem /etc/ssl/certs/the.pem 
+EXPOSE 21/tcp 21/tcp 
+EXPOSE 20/tcp 20/tcp 
+COPY ./script.sh /script.sh 
+RUN chmod +x /inicio.sh RUN /inicio.sh 
+CMD ["tail","-f","/dev/null"]
